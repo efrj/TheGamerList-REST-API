@@ -1,51 +1,63 @@
 class Api::V1::GenresController < ApplicationController
-  before_action :set_api_v1_genre, only: %i[ show update destroy ]
+  before_action :set_genre, only: %i[ show update destroy ]
 
   # GET /api/v1/genres
   def index
-    @api_v1_genres = Api::V1::Genre.all
+    @genres = Genre.all
 
-    render json: @api_v1_genres
+    render json: @genres
   end
 
   # GET /api/v1/genres/1
   def show
-    render json: @api_v1_genre
+    render json: @genre
   end
 
   # POST /api/v1/genres
   def create
-    @api_v1_genre = Api::V1::Genre.new(api_v1_genre_params)
+    @genre = Genre.new(genre_params)
 
-    if @api_v1_genre.save
-      render json: @api_v1_genre, status: :created, location: @api_v1_genre
+    if params[:image].present?
+      @genre.image.attach(params[:image])
+
+      thumbnail = ImageProcessingService.create_thumbnail(params[:image], width: 150, height: 100)
+      @genre.thumbnail.attach(io: File.open(thumbnail.path), filename: "thumbnail_#{params[:image].original_filename}", content_type: params[:image].content_type)
+    end
+
+    if @genre.save
+      render json: @genre, serializer: GenreSerializer
     else
-      render json: @api_v1_genre.errors, status: :unprocessable_entity
+      render json: @genre.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /api/v1/genres/1
   def update
-    if @api_v1_genre.update(api_v1_genre_params)
-      render json: @api_v1_genre
+    if @genre.update(genre_params)
+      render json: @genre
     else
-      render json: @api_v1_genre.errors, status: :unprocessable_entity
+      render json: @genre.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /api/v1/genres/1
   def destroy
-    @api_v1_genre.destroy
+    @genre.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_api_v1_genre
-      @api_v1_genre = Api::V1::Genre.find(params[:id])
+    def set_genre
+      @genre = Genre.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def api_v1_genre_params
-      params.fetch(:api_v1_genre, {})
+    def genre_params
+      params.permit(:name)
+    end
+
+    def set_default_url_options
+      Rails.application.routes.default_url_options[:host] = ENV['HOST']
+      Rails.application.routes.default_url_options[:port] = ENV['PORT']
     end
 end

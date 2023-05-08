@@ -4,8 +4,6 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
-#  image       :string
-#  thumbnail   :string
 #  title       :string
 #  url_link    :string
 #  created_at  :datetime         not null

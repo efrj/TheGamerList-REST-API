@@ -4,10 +4,8 @@
 #
 #  id            :bigint           not null, primary key
 #  description   :text
-#  image         :string
 #  name          :string
 #  release_year  :integer
-#  thumbnail     :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  generation_id :bigint           not null

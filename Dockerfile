@@ -9,7 +9,9 @@ RUN apk add --no-cache --update build-base \
                                 nodejs \
                                 yarn \
                                 tzdata \
-                                neofetch
+                                neofetch \
+                                imagemagick \
+                                vips-dev
 
 ENV APP_PATH /usr/src/app
 

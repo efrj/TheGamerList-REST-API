@@ -4,9 +4,7 @@
 #
 #  id           :bigint           not null, primary key
 #  description  :text
-#  image        :string
 #  release_year :integer
-#  thumbnail    :string
 #  title        :string
 #  video_url    :string
 #  created_at   :datetime         not null

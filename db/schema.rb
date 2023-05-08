@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_06_010956) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_07_212030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,8 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_010956) do
     t.string "title"
     t.text "description"
     t.string "url_link"
-    t.string "image"
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,8 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_010956) do
     t.string "title"
     t.text "content"
     t.string "slug"
-    t.string "image"
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,8 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_010956) do
     t.bigint "platform_id", null: false
     t.string "video_url"
     t.integer "release_year"
-    t.string "image"
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_games_on_genre_id"
@@ -83,16 +77,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_010956) do
     t.string "name"
     t.text "description"
     t.integer "starting_year"
-    t.string "image"
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.string "image"
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,8 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_010956) do
     t.text "description"
     t.integer "release_year"
     t.bigint "generation_id", null: false
-    t.string "image"
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["generation_id"], name: "index_platforms_on_generation_id"
@@ -121,8 +109,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_010956) do
   create_table "softhouses", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "image"
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

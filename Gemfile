@@ -12,6 +12,11 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+gem 'active_model_serializers', '~> 0.10.2'
+
+gem 'image_processing', '~> 1.12'
+gem 'mini_magick', '~> 4.11'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

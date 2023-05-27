@@ -6,7 +6,6 @@ services:
     environment:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}_development
     volumes:
       - ${POSTGRES_DATA}:/var/lib/postgresql/data
     container_name: ${POSTGRES_CONTAINER_NAME}

@@ -12,4 +12,6 @@ class Genre < ApplicationRecord
 
   has_one_attached :image
   has_one_attached :thumbnail
+
+  validates :name, presence: true
 end
